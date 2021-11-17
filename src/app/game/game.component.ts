@@ -370,4 +370,8 @@ export class GameComponent implements OnInit {
   ngOnDestroy() {
     document.getElementById('gameScene')?.remove();
   }
+
+  timeGamer() {
+    this.serverService.timeGamer();
+  }
 }

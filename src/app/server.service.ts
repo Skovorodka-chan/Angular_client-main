@@ -89,4 +89,7 @@ export class ServerService {
     this.server.askRoom(roomId);
   }
 
+  timeGamer() {
+    this.server.timeGamer();
+  }
 }

@@ -37,6 +37,8 @@ export class Server {
       this.fireEvent(this.EVENTS.ASK_ROOM, data));
     this.socket.on(this.EVENTS.JOIN_GAME, (data: any) =>
       this.fireEvent(this.EVENTS.JOIN_GAME, data));
+    this.socket.on(this.EVENTS.TIME_GAMER, (data: any) =>
+      this.fireEvent(this.EVENTS.TIME_GAMER, data));
     this.socket.on(this.EVENTS.LEAVE_GAME, (data: any) =>
       this.fireEvent(this.EVENTS.LEAVE_GAME, data));
     this.socket.on(this.EVENTS.GET_GAMES, (data: any) =>
@@ -71,7 +73,8 @@ export class Server {
     GET_NAMES: "GET_NAMES",
     SPEED_SHANGE: "SPEED_CHANGE",
     PASSWORD_CHANGED: "PASSWORD_CHANGED",
-    ASK_ROOM: "ASK_ROOM"
+    ASK_ROOM: "ASK_ROOM",
+    TIME_ROOM: "TIME_ROOM"
   };
   
   events: { [key: string]: any[] } = {};
@@ -167,6 +170,8 @@ export class Server {
     this.socket.emit(this.MESSAGES.JOIN_GAME, data);
   }
 
+  
+
   leaveGame() {
     const data = {
       gameName: this.cookieService.get('game'),
@@ -207,5 +212,8 @@ export class Server {
     this.socket.emit(this.MESSAGES.SPEED_DOWN);
   }
 
+  timeGamer() { 
+    this.socket.emit(this.MESSAGES.TIME_GAMER, this.cookieService.get('token'));
+  }
 
 }

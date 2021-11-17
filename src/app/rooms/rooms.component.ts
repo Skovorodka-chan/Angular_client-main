@@ -15,6 +15,7 @@ export class RoomsComponent implements OnInit {
   games: any[] = [];
   roomName: string =  "";
   roomId: string = ""; 
+  timeRoom: string = "";
   
 
   constructor(
@@ -75,4 +76,6 @@ export class RoomsComponent implements OnInit {
   buttonId() {
     this.serverService.askRoom(this.roomId);
   }
+
+  
 }
