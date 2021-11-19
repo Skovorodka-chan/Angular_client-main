@@ -178,7 +178,7 @@ export class GameComponent implements OnInit {
     document.body.appendChild(this.stats.dom);
 
     // sockets
-    serverService.on(this.EVENTS.LEAVE_GAME, (result: any) => this.onLeaveGame(result));
+    serverService.on(this.EVENTS.LEAVE_GAME, (data: any) => this.onLeaveGame(data));
     serverService.on(this.EVENTS.SPEED_SHANGE, (result: any) => this.onSpeedChange(result));
 
     // инициализация игры
@@ -256,8 +256,9 @@ export class GameComponent implements OnInit {
     this.serverService.leaveGame();
   }
 
-  onLeaveGame(data: any) {
-    if (data.result) {
+  onLeaveGame(params: any) {
+    if (params.data) {
+      console.log(params.data);
       this.cookieService.get('game') ? this.cookieService.delete('game') : null;
       this.router.navigate(['rooms']);
     }
